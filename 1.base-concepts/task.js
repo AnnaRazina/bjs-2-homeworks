@@ -29,7 +29,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
   let loanBody = 0;
   loanBody = (parseInt(amount)) - (parseInt(contribution));
 
-      function calculationLoanTime (date) {
+      function calculationLoanTime(date) {
           let loanTime = 0;
           let startCreditTime = new Date();
           let andCreditTime = [date.getFullYear(), date.getMonth()];
@@ -44,7 +44,7 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
 
           return loanTime;
       };   
-  let loanTimeMonths = calculationLoanTime (date);
+  let loanTimeMonths = calculationLoanTime(date);
 
   let P = (+(percent)) / 100 / 12;
   let MonthlyFee = loanBody * (P + (P / (((1 + P)**loanTimeMonths) - 1)));
