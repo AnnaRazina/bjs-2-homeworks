@@ -62,13 +62,15 @@ class Library {
         this.name = name;
         this.books = books;
     }
-    addBook(book) {
+    addBook (book) {
         this.book = book; 
-        if (this.book._state) {
+        /*if (this.book._state) {*/
+        if (this.book.state > 30) {
         this.books.push(book); 
+        return this.books
         }  
     }
-    findBookBy(type, value) {
+    findBookBy (type, value) {
         let result;
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i][type] === value) {
@@ -79,23 +81,41 @@ class Library {
         }
         return result;
     }
-    giveBookByName(bookName) {
-        let findBook;
-        for(let i = 0; i < this.books.length; i++) {
-           /* if (this.books[i].name !== bookName) {
-                findBook = null;
-                console.log(findBook);
-            } else*/
-            if (this.books[i].name === bookName) {
-                findBook = this.books.splice(i, 1);
-                console.log(findBook);
-            }    
-        };
 
+    giveBookByName (bookName) {
+        //мой итоговый код.
+        /*let result = this.books.filter((book, i) => {
+            if (book.name === bookName) {
+                this.books.splice(i, 1); 
+                return console.log(book);
+            }});
+        if (result === undefined) {
+            return console.log(null)
+        }*/
+        
+        //код написаный совмесно с Максимом Квашниным.
+        let result = this.books.filter((book) => book.name === bookName)[0];
+        if (result === undefined) {
+            return console.log(null);
+        } else {
+            this.books.splice(this.books.indexOf(result),1)
+            return console.log(result);
+        }
+        
+        //код через for(а вдруг сработает:)), но нет не сработал.)
+        /*let findBook;
+        for (let i = 0; i < this.books.length; i++) {
+            if (this.books[i].name == bookName) {
+                findBook = this.books[i];
+                this.books.splice(i, 1)
+                return console.log(findBook);
+            }
+        }
         if (findBook === undefined) {
-            return null;
-        };
-       
-        return findBook;
+            return console.log(null)
+        }*/
     }
-}    
+}
+
+
+
