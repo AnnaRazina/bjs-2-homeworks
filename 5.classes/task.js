@@ -64,58 +64,31 @@ class Library {
     }
     addBook (book) {
         this.book = book; 
-        /*if (this.book._state) {*/
         if (this.book.state > 30) {
         this.books.push(book); 
         return this.books
         }  
     }
     findBookBy (type, value) {
-        let result;
+        let BookByType;
         for (let i = 0; i < this.books.length; i++) {
             if (this.books[i][type] === value) {
-                result = this.books[i];
+                BookByType = this.books[i];
             } else {
-                result = null;
+                BookByType = null;
             }
         }
-        return result;
+        return BookByType;
     }
-
     giveBookByName (bookName) {
-        //мой итоговый код.
-        /*let result = this.books.filter((book, i) => {
-            if (book.name === bookName) {
-                this.books.splice(i, 1); 
-                return console.log(book);
-            }});
-        if (result === undefined) {
-            return console.log(null)
-        }*/
-        
-        //код написаный совмесно с Максимом Квашниным.
+        let findBook;
         let result = this.books.filter((book) => book.name === bookName)[0];
         if (result === undefined) {
-            return console.log(null);
+            return null;
         } else {
-            this.books.splice(this.books.indexOf(result),1)
-            return console.log(result);
+            this.books.splice(this.books.indexOf(result),1);
+            findBook = result;
+            return findBook;
         }
-        
-        //код через for(а вдруг сработает:)), но нет не сработал.)
-        /*let findBook;
-        for (let i = 0; i < this.books.length; i++) {
-            if (this.books[i].name == bookName) {
-                findBook = this.books[i];
-                this.books.splice(i, 1)
-                return console.log(findBook);
-            }
-        }
-        if (findBook === undefined) {
-            return console.log(null)
-        }*/
     }
 }
-
-
-
